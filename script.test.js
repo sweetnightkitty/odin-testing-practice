@@ -1,4 +1,4 @@
-const sum = require("./script");
+import { sum } from "./script";
 
 test("adds 1 + 2 to equal 3", () => {
     expect(sum(1, 2)).toBe(3);
