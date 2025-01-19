@@ -1,4 +1,4 @@
-export function casearCipher(word) {
+export function casearCipher(word, shiftValue = 3) {
     if(!word) {
         throw new Error("Need to provide a message to code");
     }
@@ -23,7 +23,7 @@ export function casearCipher(word) {
     }
 
     //Shift the code by adding 3 to create new code
-    const newCode = code.map((value) => value + 3);
+    const newCode = code.map((value) => value + shiftValue);
 
     //Use the alphabet to convert the new code back into letters
     const newString = [];
