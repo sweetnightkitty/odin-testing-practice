@@ -1,5 +1,5 @@
 
-import { casearCipher, isUpperCase } from "./caesarCipher";
+import { casearCipher, isALetter, isUpperCase } from "./caesarCipher";
 
 describe("Caesar Cipher", ()=>{
     it("Throws error if no parameter entered", ()=> {
@@ -39,11 +39,31 @@ describe("Caesar Cipher", ()=>{
         expect(casearCipher("C A T")).toBe("F D W");
     })
 
+    it("Works with punctuation", ()=> {
+        expect(casearCipher("dog!")).toBe("grj!");
+    })
+
+    it("works with punctuation, spaces and uppercase", ()=> {
+        expect(casearCipher("D Og!")).toBe("G Rj!");
+        expect(casearCipher("s T!aY", 5)).toBe("x Y!fD");
+    })
 })
 
 describe("isUppercase", ()=> {
     it("checks if value of one letter is uppercase", ()=> {
         expect(isUpperCase("a")).toBe(false);
         expect(isUpperCase("B")).toBe(true);
+    })
+
+})
+
+describe("isALetter", ()=> {
+    it("Works with punctuation", ()=> {
+        expect(isALetter("!")).toBe(false);
+    })
+
+    it("works with letters", ()=> {
+        expect(isALetter("a")).toBe(true);
+        expect(isALetter("B")).toBe(true);
     })
 })
