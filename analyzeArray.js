@@ -1,5 +1,7 @@
 export function analyzeArray(array) {
-
+    if(typeof array !== "object") {
+        throw new Error("Must input an array");
+    }
     return {
         average: findAverage(array),
         min: findMinMax(array, "min"),
