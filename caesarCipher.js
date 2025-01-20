@@ -1,5 +1,3 @@
-import { callExpression } from "@babel/types";
-
 export function casearCipher(word, shiftValue = 3) {
     if(!word) {
         throw new Error("Need to provide a message to code");
@@ -38,16 +36,12 @@ export function casearCipher(word, shiftValue = 3) {
     const newString = [];
     newCode.map((i)=> newString.push(alphabet[i]));
 
-    //Tracks what index value contains a space and adds it back in
-    for (let i = 0; i < queue.length; i++) {
-        if(queue[i] == " ") {
-            newString.splice(i, 0, " ");
-        }
-    }
-
-    //Tracks what letters were uppercase and applies to the same place in the new string
+    //Checks for uppercase, spaces and punctuation and adds them back in
     for(let i = 0; i < queue.length; i++) {
-        if(isUpperCase(queue[i]) == true) {
+        //If not a letter then it's a space or punctuation
+        if(isALetter(queue[i]) == false) {
+            newString.splice(i, 0, queue[i]);
+        } else if(isUpperCase(queue[i]) == true) {
             newString[i] = newString[i].toUpperCase();
         }
     }
@@ -62,6 +56,16 @@ if(letter == letter.toUpperCase()) {
 } else {
     return false;
 }
+}
+
+export function isALetter(letter) {
+    const alphabet = Array.from("abcdefghijklmnopqrstuvwxyz");
+    for(let i = 0; i < alphabet.length; i++) {
+        if(alphabet[i] == letter.toLowerCase()) {
+            return true;
+        }
+    }
+    return false;
 }
 
 
